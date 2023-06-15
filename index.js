@@ -3,17 +3,20 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const https = require("https");
-
+const cors = require('cors');
 const app = express();
 
-// Middleware to parse JSON
-app.use(express.json());
 app.options("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.sendStatus(204);
 });
+
+app.use(cors());
+// Middleware to parse JSON
+app.use(express.json());
+
 // // configure the app to use bodyParser()
 // app.use(bodyParser.urlencoded({
 //   extended: true
