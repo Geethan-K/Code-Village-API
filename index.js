@@ -115,7 +115,7 @@ app.post('/api/register', async (req, res) => {
     const token = jwt.sign({ userId: newUser._id }, 'secret-key');
 
     // Return success response with token and points
-    res.status(201).json({ token, points: newUser.points });
+    res.status(201).json({ token, responseType:"success",message:'Registered successfully !' });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -144,7 +144,7 @@ app.post('/api/login', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, 'secret-key');
 
     // Return success response with token and points
-    res.status(200).json({ token, points: user.points });
+    res.status(200).json({ token, responseType: 'success',message:'Login Success !' });
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
@@ -183,7 +183,7 @@ app.post('/api/admin/registration',async(req,res)=>{
     const token = jwt.sign({ userId: newAdmin._id }, 'secret-key');
 
     // Return success response with token and points
-    res.status(201).json({ token });
+    res.status(201).json({ token,responseType:'success',message:'Admin created successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
@@ -206,7 +206,7 @@ app.post('/api/admin/login',async(req,res)=>{
       const token = jwt.sign({ userId: user._id }, 'secret-key');
   
       // Return success response with token and points
-      res.status(200).json({ token, points: user.points });
+      res.status(200).json({ token, responseType:'success',message:'Login Successfull' });
   }catch(error){
       res.status(500).json({ message: 'Internal server error' });
   }
